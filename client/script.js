@@ -101,12 +101,14 @@ $(document).on('keyup', function (e) {
 
 function setCommand(code) {
   globalState.command = new ArrayBuffer(1);
-  var view = new Uint8Array(code);
+  var view = new Uint8Array(globalState.command);
   view[0] = code;
 }
 
 function send() {
-  connection.send(globalState.command);
+  if (globalState.command !== null) {
+    connection.send(globalState.command);
+  }
 }
 
 function globalReset() {

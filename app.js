@@ -17,13 +17,11 @@ wss.on('connection', function(ws) {
   var msgConnect  = new Buffer([0]);
   client.send(msgConnect, 0, msgConnect.length, 44100, '10.8.11.91', function(err, bytes) {
     console.log('connect sent');
-    client.close();
   });
 
   ws.on('message', function (message) {
     client.send(message, 0, message.length, 44100, '10.8.11.91', function(err, bytes) {
-      console.log('connect sent');
-      client.close();
+      console.log(message);
     });
   });
 
