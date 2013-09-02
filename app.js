@@ -9,7 +9,7 @@ var client = dgram.createSocket("udp4");
 app.use(express.static(__dirname + '/client'));
 
 var server = http.createServer(app);
-server.listen(8080);
+server.listen(8080, '0.0.0.0');
 
 var wss = new WebSocketServer({server: server});
 
@@ -20,8 +20,8 @@ wss.on('connection', function(ws) {
   });
 
   ws.on('message', function (message) {
-    client.send(message, 0, message.length, 44100, '10.8.11.91', function(err, bytes) {
-      console.log(message);
+    client.send(new Buffer(message[0]), 0, 1, 44100, '10.8.11.91', function(err, bytes) {
+      console.log(bytes);
     });
   });
 
