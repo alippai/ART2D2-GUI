@@ -11,7 +11,7 @@ connection.onmessage = function (message) {
 };
 
 $connect.on('click', function (e) {
-  connection.send('connect');
+  connection.send(JSON.stringify({ type: 'command', data: 'connect'}));
   e.preventDefault();
   return false;
 });
