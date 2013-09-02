@@ -19,10 +19,11 @@ var commandList = {
   MEASUREBACK: 14
 };
 
+var timer;
+
 var connection = new WebSocket("ws://localhost:8080/");
 
 connection.onopen = function () {
-  setInterval(send, 750);
   console.log('connected');
 };
 
@@ -103,6 +104,8 @@ function setCommand(code) {
   globalState.command = new ArrayBuffer(1);
   var view = new Uint8Array(globalState.command);
   view[0] = code;
+  clearTimeout(timer);
+  send();
 }
 
 function send() {
@@ -111,6 +114,7 @@ function send() {
     console.log(globalState);
     connection.send(globalState.command);
   }
+  timer = setTimeout(send, 750);
 }
 
 function globalReset() {
