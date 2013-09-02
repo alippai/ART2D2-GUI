@@ -15,12 +15,12 @@ var wss = new WebSocketServer({server: server});
 
 wss.on('connection', function(ws) {
   var msgConnect  = new Buffer([0]);
-  client.send(msgConnect, 0, msgConnect.length, 44100, '10.8.11.91', function(err, bytes) {
+  client.send(msgConnect, 0, msgConnect.length, 44400, '10.8.11.91', function(err, bytes) {
     console.log('connect sent');
   });
 
   ws.on('message', function (message) {
-    client.send(new Buffer(message[0]), 0, 1, 44100, '10.8.11.91', function(err, bytes) {
+    client.send(new Buffer(message[0]), 0, 1, 44400, '10.8.11.91', function(err, bytes) {
       console.log(bytes);
     });
   });
