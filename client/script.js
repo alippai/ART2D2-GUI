@@ -43,7 +43,8 @@ $(document).on('keydown', function (e) {
       } else {
         setCommand(commandList.FORWARD);
       }
-      break;
+      e.preventDefault();
+      return false;
     // `a`
     case 65:
       globalState.a = true;
@@ -54,7 +55,8 @@ $(document).on('keydown', function (e) {
       } else {
         setCommand(commandList.LEFT);
       }
-      break;
+      e.preventDefault();
+      return false;
     // `s`
     case 83:
       globalState.s = true;
@@ -65,7 +67,8 @@ $(document).on('keydown', function (e) {
       } else {
         setCommand(commandList.BACKWARD);
       }
-      break;
+      e.preventDefault();
+      return false;
     // `d`
     case 68:
       globalState.d = true;
@@ -76,17 +79,16 @@ $(document).on('keydown', function (e) {
       } else {
         setCommand(commandList.RIGHT);
       }
-      break;
+      e.preventDefault();
+      return false;
     // `m`
     case 77:
       marker = !marker;
       setCommand(marker ? commandList.PULLUP : commandList.PUTDOWN);
-      break;
+      e.preventDefault();
+      return false;
 
   }
-
-  e.preventDefault();
-  return false;
 });
 
 $(document).on('keyup', function (e) {
