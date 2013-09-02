@@ -106,7 +106,7 @@ function setCommand(code) {
 }
 
 function send() {
-  client.send(globalState.command);
+  connection.send(globalState.command);
 }
 
 function globalReset() {
