@@ -107,6 +107,8 @@ function setCommand(code) {
 
 function send() {
   if (globalState.command !== null) {
+    console.log(new Uint8Array(globalState.command));
+    console.log(globalState);
     connection.send(globalState.command);
   }
 }

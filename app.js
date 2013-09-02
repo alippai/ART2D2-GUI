@@ -23,9 +23,6 @@ wss.on('connection', function(ws) {
     var msg = new Buffer([message[0]]);
     client.send(msg, 0, 1, 44400, '10.8.11.91', function(err, bytes) {
       console.log(msg);
-      console.log(msg[0]);
-      console.log(err);
-      console.log(bytes);
     });
   });
 
