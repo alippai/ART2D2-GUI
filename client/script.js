@@ -1,5 +1,6 @@
 var globalState = globalReset();
 var marker = false;
+var lastKey = 0;
 
 var commandList = {
   CONNECT: 0,
@@ -33,6 +34,11 @@ connection.onmessage = function (message) {
 };
 
 $(document).on('keydown', function (e) {
+  if (e.keyCode === lastKey) {
+    e.preventDefault();
+    return false;
+  }
+  lastKey = e.keyCode;
   switch (e.keyCode) {
     // `w`
     case 87:
@@ -110,8 +116,7 @@ function setCommand(code) {
 
 function send() {
   if (globalState.command !== null) {
-    console.log(new Uint8Array(globalState.command));
-    console.log(globalState);
+    console.log(new Uint8Array(globalState.command)[0]);
     connection.send(globalState.command);
   }
   timer = setTimeout(send, 750);
