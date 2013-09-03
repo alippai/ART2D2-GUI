@@ -22,7 +22,7 @@ var commandList = {
 
 var timer;
 
-var connection = new WebSocket("ws://" + window.location.host + ":8080/");
+var connection = new WebSocket("ws://" + window.location.host + "/");
 
 connection.onopen = function () {
   console.log('connected');
